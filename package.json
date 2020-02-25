@@ -4,15 +4,20 @@
   "description": "nodereactapp",
   "main": "server.js",
   "scripts": {
-    "start":"node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clientintall":"npm install --prefix client",
+    "server":"nodemon server.js",
+    "client":"cd client && npm start",
+    "start":"concurrently \"npm run server\" \"npm run client\""
   },
   "author": "rishan",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "concurrently": "^5.1.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "nedb": "^1.8.0"
+    "nedb": "^1.8.0",
+    "nodemon": "^2.0.2"
   }
 }
