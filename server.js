@@ -13,6 +13,11 @@ app.use(cors());
 
 // const api = require('./server/api');
 
+var redirectToHTTPS = require('express-http-to-https').redirectToHTTPS
+ 
+// Don't redirect if the hostname is `localhost:port` or the route is `/insecure`
+app.use(redirectToHTTPS([/localhost:(\d{4})/], [/\/insecure/], 301));
+
 app.use('/api', (req, res)=>{
 
     res.header("Access-Control-Allow-Origin", "*");
