@@ -15,12 +15,22 @@ app.use(cors());
 
 app.use('/api', (req, res)=>{
 
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Credentials", true);
+
     const obj = [{id:'1', name:'rishan'}, {id:'2', name:'akshara'}]
 
 
     res.send(obj)
 });
 
+app.get('*', (req, res) => {
+    
+    console.log('ada',path.join(__dirname,'./client','build', 'index.html'))
+    res.sendFile(path.join(__dirname, './client', 'build', 'index.html'));
+});
 
 const port = process.env.PORT || '3001';
 app.set('port', port);
